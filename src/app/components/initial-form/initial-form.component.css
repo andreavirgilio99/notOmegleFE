@@ -1,0 +1,31 @@
+#addInterest {
+    margin-bottom: 2%;
+    margin-left: 5px;
+}
+
+#interestList {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+}
+
+.interest-item {
+    display: inline;
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-left: 3px;
+    background-color: #f3a23f;
+    font-weight: 500;
+}
+
+.remove-interest {
+    cursor: pointer;
+    color: #ff0000;
+    margin-left: 5px;
+}
+
+#userPurpose {
+    resize: none;
+}
