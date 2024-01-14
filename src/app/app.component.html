@@ -6,7 +6,8 @@
     <div>
         <app-initial-form></app-initial-form>
         <div style="text-align: center;">
-            <button id="searchButton" class="btn btn-primary" (click)="startSearch()">Look for a partner</button>
+            <button *ngIf="formComponent" id="searchButton" class="btn btn-primary" (click)="startSearch()"
+                [disabled]="!formComponent.form.valid">Look for a partner</button>
         </div>
     </div>
 </div>

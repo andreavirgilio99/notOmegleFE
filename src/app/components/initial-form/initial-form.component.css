@@ -1,9 +1,15 @@
+#radios {
+    margin-top: 5px;
+}
+
 #interestList {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-wrap: wrap;
+    max-height: 15vh;
+    overflow-y: scroll;
 }
 
 .interest-item {
