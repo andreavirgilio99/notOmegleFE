@@ -8,7 +8,7 @@ import { Required } from 'src/app/utils/required.validator';
   styleUrls: ['./initial-form.component.css']
 })
 export class InitialFormComponent {
-  interests: string[] = ['bowling', 'trekking', 'taking a shit', 'bowling', 'trekking', 'taking a shit', 'bowling', 'trekking', 'taking a shit', 'bowling', 'trekking', 'taking a shit', 'bowling', 'trekking', 'taking a shit'];
+  interests: string[] = [];
   interestInput = new FormControl('', Required)
 
   addInterest(){
