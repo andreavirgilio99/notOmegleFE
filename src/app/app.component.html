@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="router.url !== '/video-chat'">
     <h1>NotOm3gle</h1>
 
     <app-disclaimer></app-disclaimer>
@@ -11,3 +11,5 @@
         </div>
     </div>
 </div>
+
+<router-outlet></router-outlet>

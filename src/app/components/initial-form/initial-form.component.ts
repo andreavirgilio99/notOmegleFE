@@ -8,7 +8,8 @@ import { Required } from 'src/app/utils/required.validator';
   templateUrl: './initial-form.component.html',
   styleUrls: ['./initial-form.component.css']
 })
-export class InitialFormComponent implements OnInit{
+export class InitialFormComponent implements OnInit {
+
   interests: string[] = [];
   interestInput = new FormControl('', Required)
 
@@ -20,36 +21,45 @@ export class InitialFormComponent implements OnInit{
   })
 
   ngOnInit(): void {
-    const cachedData = localStorage.getItem('userData');
+    const sessionCachedData = sessionStorage.getItem('userData');
+    const localCachedData = localStorage.getItem('userData');
 
-    if(cachedData){
-      const parsedData: UserCache = JSON.parse(cachedData);
+    if (sessionCachedData) {
+      const parsedData: UserCache = JSON.parse(sessionCachedData);
+      this.setCachedValues(parsedData)
+    }
 
-      this.form.get('username')!.setValue(parsedData.data.username);
-      this.form.get('purpose')!.setValue(parsedData.data.purpose);
-      this.form.get('isMinor')!.setValue(parsedData.data.isMinor);
-      this.form.get('rememberMe')!.setValue(parsedData.rememberMe);
-
-      this.interests = parsedData.data.interests;
+    else if (localCachedData) {
+      const parsedData: UserCache = JSON.parse(localCachedData);
+      this.setCachedValues(parsedData)
     }
   }
 
-  addInterest(){
-    if(this.interestInput.valid){
+  addInterest() {
+    if (this.interestInput.valid) {
       this.interests.push(this.interestInput.value!)
       this.interestInput.reset()
     }
   }
 
-  removeInterest(interest: string){
+  removeInterest(interest: string) {
     const indx = this.interests.indexOf(interest);
     this.interests.splice(indx, 1)
   }
 
-  interestKeydown(e: KeyboardEvent){
-    if(e.key === 'Enter'){
+  interestKeydown(e: KeyboardEvent) {
+    if (e.key === 'Enter') {
       e.preventDefault();
       this.addInterest()
     }
+  }
+
+  setCachedValues(cache: UserCache) {
+    this.form.get('username')!.setValue(cache.data.username);
+    this.form.get('purpose')!.setValue(cache.data.purpose);
+    this.form.get('isMinor')!.setValue(cache.data.isMinor);
+    this.form.get('rememberMe')!.setValue(cache.rememberMe);
+
+    this.interests = cache.data.interests;
   }
 }
