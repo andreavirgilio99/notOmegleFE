@@ -25,3 +25,15 @@
   .message-text {
     word-wrap: break-word;
   }
+
+  .start-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+  }
+
+  .stop-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+  }

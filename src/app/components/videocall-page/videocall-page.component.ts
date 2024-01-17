@@ -116,6 +116,7 @@ export class VideocallPageComponent implements OnInit {
     text: "I hate people",
     isYou: false
   },]
+  isStreaming: boolean = false;
 
   constructor(private router: Router, public socketService: SocketService) { }
 
@@ -132,5 +133,17 @@ export class VideocallPageComponent implements OnInit {
 
   onVideoLoaded(e: any) {
     e.target.play();
+  }
+
+  startStreaming() {
+    // Logica per iniziare lo streaming
+    this.isStreaming = true;
+    // ... (altro codice di avvio streaming)
+  }
+
+  stopStreaming() {
+    // Logica per interrompere lo streaming
+    this.isStreaming = false;
+    // ... (altro codice di arresto streaming)
   }
 }
