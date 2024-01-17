@@ -1,0 +1,27 @@
+.interest-badge {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+
+  .chat-container {
+    height: 60vh;
+    overflow-y: auto;
+  }
+
+  .message {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .message-sender {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  .message-text {
+    word-wrap: break-word;
+  }

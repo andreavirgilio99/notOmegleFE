@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserCache } from 'src/app/model/user-cache.model';
 import { UserData } from 'src/app/model/user-data.model';
+import { SocketService } from 'src/app/services/socket.service';
+import { getUserData } from 'src/app/utils/get-user-data';
 
 @Component({
   selector: 'app-videocall-page',
@@ -10,34 +12,125 @@ import { UserData } from 'src/app/model/user-data.model';
 })
 export class VideocallPageComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  username = "JamesFranko"
+  purpose = "I\'d like to beat it to human beings of dubious ages"
+  sharedInterests = ["hunting", "fishing", "fucking"]
+  chatMessages = [{
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "I hate people",
+    isYou: false
+  }, {
+    text: "Hi how are you doing?",
+    isYou: true
+  },
+  {
+    text: "I hate people",
+    isYou: false
+  },]
+
+  constructor(private router: Router, public socketService: SocketService) { }
 
   ngOnInit(): void {
-    const userData = this.getUserData();
+    const userData = getUserData();
 
     if (!userData) {
       this.router.navigate(['/'])
     }
     else {
-      //connect to websocket
+      this.socketService.socketInit()
     }
   }
 
-  getUserData(): UserData | undefined {
-    const sessionCachedData = sessionStorage.getItem('userData');
-    const localCachedData = localStorage.getItem('userData');
-    let userData: UserData | undefined = undefined;
-
-    if (sessionCachedData) {
-      const parsedData: UserCache = JSON.parse(sessionCachedData);
-      userData = parsedData.data;
-    }
-
-    else if (localCachedData) {
-      const parsedData: UserCache = JSON.parse(localCachedData);
-      userData = parsedData.data;
-    }
-
-    return userData;
+  onVideoLoaded(e: any) {
+    e.target.play();
   }
 }
