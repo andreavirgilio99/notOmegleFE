@@ -5,6 +5,7 @@ type SocketClient = any; //the type doesn't exist on the client, this property i
 export interface User {
     userData: UserData;
     peerId: string;
+    socketId?: string;
     camPartner?: SocketClient
     socket?: SocketClient;
 }

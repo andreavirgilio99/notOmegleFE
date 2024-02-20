@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserCache } from 'src/app/model/user-cache.model';
-import { UserData } from 'src/app/model/user-data.model';
 import { SocketService } from 'src/app/services/socket.service';
+import { dontTouchMyStorage } from 'src/app/utils/constants';
 import { getUserData } from 'src/app/utils/get-user-data';
 
 @Component({
@@ -10,113 +9,7 @@ import { getUserData } from 'src/app/utils/get-user-data';
   templateUrl: './videocall-page.component.html',
   styleUrls: ['./videocall-page.component.css']
 })
-export class VideocallPageComponent implements OnInit {
-
-  username = "JamesFranko"
-  purpose = "I\'d like to beat it to human beings of dubious ages"
-  sharedInterests = ["hunting", "fishing", "fucking"]
-  chatMessages = [{
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "I hate people",
-    isYou: false
-  }, {
-    text: "Hi how are you doing?",
-    isYou: true
-  },
-  {
-    text: "I hate people",
-    isYou: false
-  },]
-  isStreaming: boolean = false;
+export class VideocallPageComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, public socketService: SocketService) { }
 
@@ -128,22 +21,18 @@ export class VideocallPageComponent implements OnInit {
     }
     else {
       this.socketService.socketInit()
+      window.addEventListener('storage', this.lulz)
     }
   }
 
-  onVideoLoaded(e: any) {
-    e.target.play();
+  lulz = () => {
+    const justDont = dontTouchMyStorage;
+    justDont.forEach(youSuck => alert(youSuck));
+    this.router.navigate(['/']);
   }
 
-  startStreaming() {
-    // Logica per iniziare lo streaming
-    this.isStreaming = true;
-    // ... (altro codice di avvio streaming)
-  }
-
-  stopStreaming() {
-    // Logica per interrompere lo streaming
-    this.isStreaming = false;
-    // ... (altro codice di arresto streaming)
+  ngOnDestroy(): void {
+    this.socketService.cleanSlate();
+    window.removeEventListener('storage', this.lulz)
   }
 }

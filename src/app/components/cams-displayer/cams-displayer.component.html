@@ -1,0 +1,31 @@
+<div>
+    <div class="row cam-container">
+        <div *ngIf="(!socketService.partnerStream) && socketService.status != UserStatus.Idle">
+            <!-- Mostra l'animazione di caricamento -->
+            <div class="spinner-border text-primary centre" role="status">
+            </div>
+        </div>
+
+        <!-- Sostituisci con il componente video o l'elemento del tuo streaming -->
+        <video *ngIf="socketService.partnerStream" class="video-stream" [srcObject]="socketService.partnerStream"
+            (loadedmetadata)="onVideoLoaded($event)" [muted]="true">
+            Your browser does not support the video tag.
+        </video>
+
+        <p style="color: white;" *ngIf="(!socketService.partnerStream) && socketService.status == UserStatus.Idle">START
+            LOOKING FOR A PARTNER</p>
+    </div>
+    <div class="row cam-container">
+        <div *ngIf="!socketService.myStream; else myVideoStream">
+            <!-- Mostra l'animazione di caricamento -->
+            <div class="spinner-border text-primary centre" role="status">
+            </div>
+        </div>
+        <ng-template #myVideoStream>
+            <video class="video-stream" [srcObject]="socketService.myStream!" (loadedmetadata)="onVideoLoaded($event)"
+                [muted]="true">
+                Your browser does not support the video tag.
+            </video>
+        </ng-template>
+    </div>
+</div>

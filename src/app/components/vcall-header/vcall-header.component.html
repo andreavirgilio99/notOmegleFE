@@ -1,0 +1,49 @@
+<div class="card-header">
+    <div class="row">
+        <div class="col">
+            <div *ngIf="socketService.status == UserStatus.Paired; else notPaired">
+                <h5 class="card-title">You've been paired with {{socketService.camPartner?.userData?.username}}
+                </h5>
+                <p class="card-text">Your shared interests:</p>
+                <div class="d-flex flex-wrap">
+                    <div class="badge badge-primary m-1 interest-badge"
+                        *ngFor="let interest of socketService.sharedInterests">
+                        {{ interest }}
+                    </div>
+                </div>
+                <p class="card-text">
+                    <span style="font-weight: 500;">{{ socketService.camPartner?.userData?.username }} wants
+                        to:</span> {{ socketService.camPartner?.userData?.purpose }}
+                </p>
+            </div>
+            <ng-template #notPaired>
+                <div>
+                    <h5 class="card-title">
+                        Press start to look for a partner
+                        <span routerLink="/" class="go-back">GO BACK</span>
+                    </h5>
+                    <p class="card-text">Your interests:</p>
+                    <div class="d-flex flex-wrap">
+                        <div class="badge badge-primary m-1 interest-badge"
+                            *ngFor="let interest of socketService.sharedInterests">
+                            {{ interest }}
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <div class="col">
+            <div class="centre">
+                <button class="btn start-button" *ngIf="socketService.status == UserStatus.Idle"
+                    [disabled]="(!socketService.myStream) || (socketService.socket?.disconnected)"
+                    (click)="socketService.searchStart()">START</button>
+                <button class="btn cancel-button" *ngIf="socketService.status == UserStatus.Pending"
+                    (click)="socketService.cancelSearch()">CANCEL</button>
+                <ng-container *ngIf="socketService.status == UserStatus.Paired">
+                    <button class="btn stop-button" (click)="socketService.stopCall()">STOP</button>
+                    <button class="btn cancel-button" style="margin-left: 3px;">SKIP</button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

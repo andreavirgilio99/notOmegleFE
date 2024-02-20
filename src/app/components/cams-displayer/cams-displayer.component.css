@@ -1,0 +1,10 @@
+.video-stream {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cam-container {
+    height: 35vh;
+    background-color: black;
+  }

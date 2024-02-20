@@ -1,0 +1,20 @@
+.send-bttn {
+    position: relative;
+    top: -10%;
+    height: 100%;
+  }
+
+  .message {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .message-sender {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  .message-text {
+    word-wrap: break-word;
+  }

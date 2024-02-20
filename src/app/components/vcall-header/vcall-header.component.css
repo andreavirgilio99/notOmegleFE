@@ -1,0 +1,32 @@
+.go-back {
+    cursor: pointer;
+    color: #fd293d;
+    font-weight: 700;
+    margin-left: 10px;
+  }
+  
+  .interest-badge {
+      background-color: #007bff;
+      color: #fff;
+      padding: 5px 10px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+  
+    .start-button {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+    }
+  
+    .stop-button {
+      background-color: #dc3545;
+      color: #fff;
+      border: none;
+    }
+  
+    .cancel-button {
+      background-color: #f08b00;
+      color: #fff;
+      border: none;
+    }

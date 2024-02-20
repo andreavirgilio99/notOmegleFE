@@ -1,90 +1,15 @@
 <div class="container mt-5">
     <div class="card">
         <!-- Informazioni in cima -->
-        <div class="card-header">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title">You've been paired with JamesFranko</h5>
-                    <p class="card-text">Your shared interests:</p>
-                    <div class="d-flex flex-wrap">
-                        <div class="badge badge-primary m-1 interest-badge" *ngFor="let interest of sharedInterests">
-                            {{ interest }}
-                        </div>
-                    </div>
-                    <p class="card-text">
-                        {{ username }} wants to: {{ purpose }}
-                    </p>
-                </div>
-                <div class="col">
-                    <div>
-                        <button class="btn start-button" *ngIf="!isStreaming" (click)="startStreaming()">START</button>
-                        <button class="btn stop-button" *ngIf="isStreaming" (click)="stopStreaming()">STOP</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+        <app-vcall-header></app-vcall-header>
         <!-- Corpo della card -->
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <div class="row">
-                        <div *ngIf="true; else videoStream">
-                            <!-- Mostra l'animazione di caricamento -->
-                            <div style="text-align: center; width: 100%; height: 100%;">
-                                <div class="spinner-border text-primary" role="status">
-                                </div>
-                            </div>
-                        </div>
-                        <ng-template #videoStream>
-                            <!-- Sostituisci con il componente video o l'elemento del tuo streaming -->
-                            <video style="width: 100%; height: 100%;" [srcObject]="socketService.myStream!"
-                                (loadedmetadata)="onVideoLoaded($event)" [muted]="true">
-                                Your browser does not support the video tag.
-                            </video>
-                        </ng-template>
-                    </div>
-                    <div class="row">
-                        <div *ngIf="!socketService.myStream; else myVideoStream">
-                            <!-- Mostra l'animazione di caricamento -->
-                            <div class="spinner-border text-primary" role="status">
-                                <span class="sr-only"></span>
-                            </div>
-                        </div>
-                        <ng-template #myVideoStream>
-                            <video style="width: 100%; height: 100%;" [srcObject]="socketService.myStream!"
-                                (loadedmetadata)="onVideoLoaded($event)" [muted]="true">
-                                Your browser does not support the video tag.
-                            </video>
-                        </ng-template>
-                    </div>
+                    <app-cams-displayer></app-cams-displayer>
                 </div>
                 <div class="col-md-6">
-                    <div class="card" style="height: 100%;">
-                        <div class="card-header">Chat</div>
-                        <div class="card-body" style="overflow-y: auto; height: 60vh;">
-                            <!-- Messaggi di esempio -->
-                            <div class="message" *ngFor="let message of chatMessages">
-                                <div class="message-sender">
-                                    <ng-container *ngIf="message.isYou; else otherUser">
-                                        You:
-                                    </ng-container>
-                                    <ng-template #otherUser>
-                                        {{ username }}:
-                                    </ng-template>
-                                </div>
-                                <div class="message-text">
-                                    {{ message.text }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex">
-                            <textarea class="form-control" rows="2" style="resize: none;"
-                                placeholder="Type your message"></textarea>
-                            <button class="btn btn-primary mt-2 ml-2">Send</button>
-                        </div>
-                    </div>
+                    <app-chat></app-chat>
                 </div>
             </div>
         </div>
