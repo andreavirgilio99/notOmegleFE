@@ -7,7 +7,7 @@
                 socketService.camPartner.userData.username + ':' : 'Partner:')) }}
             </div>
             <div class="message-text">
-                {{ message.content }}
+                <div [innerHTML]="detectLinks(message.content)"></div>
             </div>
         </div>
     </div>

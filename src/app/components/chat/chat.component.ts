@@ -27,4 +27,9 @@ export class ChatComponent {
       this.newMessage.setValue('')
     }
   }
+
+  detectLinks(messageContent: string): string {
+    const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    return messageContent.replace(urlRegex, '<a href="$1" target="_blank">$1</a>');
+  }
 }

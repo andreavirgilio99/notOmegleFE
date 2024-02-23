@@ -1,3 +1,9 @@
+a {
+  color: blue; /* Cambia il colore del link */
+  text-decoration: underline; /* Sottolinea il link */
+  cursor: pointer; /* Mostra il cursore come 'pointer' quando passi sopra il link */
+}
+
 .send-bttn {
     position: relative;
     top: -10%;
